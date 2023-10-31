@@ -30,7 +30,7 @@ class Detector:
     detection_model = None
     classes = None
 
-    def __init__(self, providers: List[Tuple[str,Dict]], model_name="default"): :
+    def __init__(self, providers: List[Tuple[str,Dict]], model_name="default"):
         """
         model = Detector()
         """
