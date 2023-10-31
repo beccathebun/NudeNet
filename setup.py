@@ -26,6 +26,7 @@ REQUIRED = [
     'opencv-python-headless>=4.5.1.48',
     'pydload',
     'scikit-image',
+    'torch>=2.0.0, !=2.0.1, !=2.1.0',
     'onnxruntime-gpu==1.13.1'
 ]
 
