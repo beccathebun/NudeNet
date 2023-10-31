@@ -5,6 +5,7 @@ import logging
 import numpy as np
 import onnxruntime
 from progressbar import progressbar
+from typing import List, Tuple, Dict
 
 from .detector_utils import preprocess_image
 from .video_utils import get_interest_frames_from_video
@@ -25,12 +26,11 @@ FILE_URLS = {
     },
 }
 
-
 class Detector:
     detection_model = None
     classes = None
 
-    def __init__(self, model_name="default"):
+    def __init__(self, model_name="default", providers: List[Tuple[str,Dict]]): :
         """
         model = Detector()
         """
@@ -54,7 +54,7 @@ class Detector:
             print("Downloading the classes list to", classes_path)
             pydload.dload(classes_url, save_to_path=classes_path, max_time=None)
 
-        self.detection_model = onnxruntime.InferenceSession(checkpoint_path)
+        self.detection_model = onnxruntime.InferenceSession(checkpoint_path, providers=providers)
 
         self.classes = [c.strip() for c in open(classes_path).readlines() if c.strip()]
 
